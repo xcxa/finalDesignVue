@@ -33,7 +33,7 @@
         prop="hot">
       </el-table-column>
       <el-table-column
-        align="right">
+         align="right">
         <template slot="header" slot-scope="scope">
           <el-input
             v-model="search"
@@ -142,7 +142,7 @@
             jsonObj.goodsId = element.goodsId;
             $.get("http://localhost:8083/goods/getGoodsMainImg.do",jsonObj,function (data) {
               //本地映射到9090端口，部署到远程服务器需要修改这里，服务端返回的imgUrl应该为相对路径，这里图片名字就行
-              element.picture = "http://localhost:9999/" + data.imgUrl;
+              element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
               //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
               self.$set(self.tableData,index,element);
             },"json");

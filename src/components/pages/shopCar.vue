@@ -36,12 +36,12 @@
                 placeholder="输入商品名搜索"/>
             </template>
             <template slot-scope="scope">
-              <!-- <el-button
+              <el-button
                 size="mini"
-                @click="handleEdit2(scope.$index, scope.row)">单独购买</el-button> -->
-                <el-button
+                @click="handleEdit2(scope.$index, scope.row)">单独购买</el-button>
+                <!-- <el-button
                 size="mini"
-                >单独购买</el-button>
+                >单独购买</el-button> -->
               <el-button
                 size="mini"
                 type="danger"
@@ -90,7 +90,7 @@
         center>
         <div style="text-align: center">
           <h4>{{ dialogValue2 }}</h4>
-          <img src="https://i.loli.net/2019/12/17/3rPjiINl9uS5Jdz.jpg" alt="请检查网络连接" width="240" height="240">
+          <img src="https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/xcx-wx.jpg" alt="请检查网络连接" width="240" height="240">
           <br/>
           <span slot="footer" class="dialog-footer">
           <el-button type="primary" @click="centerDialogVisible2 = false" style="margin-top: 30px;">取消支付</el-button>
@@ -138,7 +138,7 @@
             jsonObj.goodsId = element.goodsId;
             $.get("http://localhost:8083/goods/getGoodsMainImg.do",jsonObj,function (data) {
               //本地映射到9090端口，部署到远程服务器需要修改这里，服务端返回的imgUrl应该为相对路径，这里图片名字就行
-              element.picture = "http://localhost:9999/" + data.imgUrl;
+              element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
               //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
               self.$set(self.tableData,index,element);
             },"json");
@@ -280,7 +280,7 @@
               jsonObj.goodsId = element.goodsId;
               $.get("http://localhost:8083/goods/getGoodsMainImg.do",jsonObj,function (data) {
                 //本地映射到9090端口，部署到远程服务器需要修改这里，服务端返回的imgUrl应该为相对路径，这里图片名字就行
-                element.picture = "http://localhost:9999/" + data.imgUrl;
+                element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
                 //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
                 self.$set(self.tableData,index,element);
               },"json");

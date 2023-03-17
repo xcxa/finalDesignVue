@@ -109,6 +109,7 @@
         <p>{{ goodsInfoDscrip }}</p>
         <span slot="footer" class="dialog-footer">
           <el-button type="primary" @click="addToShopCar" style="margin-top: 30px;">加入购物车</el-button>
+          <el-button type="primary" @click="talkToSeller" style="margin-top: 30px;">留言</el-button>
         </span>
       </div>
     </el-dialog>
@@ -133,6 +134,25 @@
         </span>
       </div>
     </el-dialog>
+    
+    <el-dialog
+  title="给卖家留言"
+  :visible.sync="messageDialogVisible"
+  width="30%"
+  center>
+  <div style="text-align: center">
+    <el-form ref="messageForm"  label-width="80px">
+      <el-form-item label="留言内容">
+        <el-input type="textarea" v-model="messageForm.message" rows="3" placeholder="请输入留言内容"></el-input>
+      </el-form-item>
+    </el-form>
+    <span slot="footer" class="dialog-footer">
+      <el-button type="primary" @click="submitMessage">提交</el-button>
+      <el-button @click="messageDialogVisible = false">取消</el-button>
+    </span>
+  </div>
+</el-dialog>
+
   </div>
 </template>
 
@@ -141,6 +161,12 @@
       name: "index-body",
       data(){
         return{
+
+          messageForm: {
+                userId: '',
+                goodsId: '',
+                message: ''
+              },
           items: {
             // img1: require("../../assets/school1.jpg"),
             img2: require("../../assets/school2.jpg"),
@@ -163,6 +189,7 @@
           goodsInfoName:"",
           goodsInfoDscrip:"",
           goodsInfoPrice: 0,
+          messageDialogVisible:false,
           centerDialogVisible:false,
           dialogValue: "",
           centerDialogVisible2:false,
@@ -201,7 +228,8 @@
             //为每个表格元素加载图片数据，主图
             $.get("http://localhost:8083/goods/getGoodsMainImg.do",jsonObj,function (data) {
               //本地映射到9090端口，部署到远程服务器需要修改这里，服务端返回的imgUrl应该为相对路径，这里图片名字就行
-              element.picture = "http://localhost:9999/" + data.imgUrl;
+              // element.picture = "http://localhost:9999/" + data.imgUrl;
+              element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
               //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
               self.$set(self.data1,index,element);
             },"json");
@@ -217,7 +245,7 @@
             //为每个表格元素加载图片数据，主图
             $.get("http://localhost:8083/goods/getGoodsMainImg.do",jsonObj,function (data) {
               //本地映射到9090端口，部署到远程服务器需要修改这里，服务端返回的imgUrl应该为相对路径，这里图片名字就行
-              element.picture = "http://localhost:9999/" + data.imgUrl;
+              element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
               //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
               self.$set(self.data2,index,element);
             },"json");
@@ -234,7 +262,7 @@
             element.picture = "";
             $.get("http://localhost:8083/goods/getGoodsMainImg.do",jsonObj,function (data) {
               //本地映射到9090端口，部署到远程服务器需要修改这里，服务端返回的imgUrl应该为相对路径，这里图片名字就行
-              element.picture = "http://localhost:9999/" + data.imgUrl;
+              element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
               //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
               self.$set(self.data3,index,element);
             },"json");
@@ -263,7 +291,7 @@
               //为每个表格元素加载图片数据，主图
               $.get("http://localhost:8083/goods/getGoodsMainImg.do",jsonObj,function (data) {
                 //本地映射到9090端口，部署到远程服务器需要修改这里，服务端返回的imgUrl应该为相对路径，这里图片名字就行
-                element.picture = "http://localhost:9999/" + data.imgUrl;
+                element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
                 //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
                 self.$set(self.data1,index,element);
               },"json");
@@ -291,6 +319,17 @@
             },"json");
           },"json");
         },
+
+        talkToSeller() {
+      // 打开留言弹出框
+      this.messageDialogVisible = true;
+      // 设置商品id和用户id
+      this.messageForm.goodsId = this.goodsInfoId;
+      this.messageForm.userId = window.sessionStorage.getItem("userId");
+      console.log('messageForm:', this.messageForm);    
+    },
+
+  
         //点击加入购物车按钮
         addToShopCar(){
           let jsonObj = {};
@@ -324,6 +363,27 @@
           this.centerDialogVisible = false;
           this.centerDialogVisible2 = false;
         },
+        submitMessage() {
+          console.log('messageForm:', this.messageForm); 
+          let json = this.messageForm;
+          // 将数据转换成JSON字符串
+          const jsonData = JSON.stringify(json);
+          console.log('jsonData:', jsonData); // 打印jsonData
+          // 调用接口提交数据
+          $.post('http://localhost:8083/message/send', jsonData)
+            .then(res => {
+              // 提交成功后的操作
+              this.$message.success('留言成功');
+              this.messageDialogVisible = false;
+            })
+            .catch(err => {
+              // 提交失败的操作
+              this.$message.error('留言失败，请稍后再试');
+            });
+        },
+
+
+        
         //点击跳转购物车按钮
         clickGoToShopCar(){
           this.clickButton();
@@ -360,7 +420,7 @@
                 //为每个表格元素加载图片数据，主图
                 $.get("http://localhost:8083/goods/getGoodsMainImg.do", jsonObj, function (data) {
                   //本地映射到9090端口，部署到远程服务器需要修改这里，服务端返回的imgUrl应该为相对路径，这里图片名字就行
-                  element.picture = "http://localhost:9999/" + data.imgUrl;
+                  element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
                   //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
                   self.$set(self.dataSearch, index, element);
                 }, "json");
