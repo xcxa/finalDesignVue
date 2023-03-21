@@ -16,10 +16,12 @@
           <img :src="scope.row.picture" alt="加载中..." width="80" height="80">
         </template>
       </el-table-column>
+
       <el-table-column
         label="商品名"
         prop="name">
       </el-table-column>
+      
       <el-table-column
         label="价格"
         prop="price">

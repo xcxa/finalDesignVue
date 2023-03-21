@@ -78,11 +78,19 @@
     text-decoration: none;
     font-size: 14px;
     color: #999;
+    margin-top: 200px;
+    
   }
   .index-footer ul>li>a{
     font-weight: bold;
+    
   }
   .index-footer{
     margin-top: 30px;
+    text-align: center;
   }
+  ul.nav.nav-tabs {
+  display: flex;
+  justify-content: center;
+}
 </style>

@@ -42,6 +42,9 @@
                 <li>
                   <a class="my-dropdown-menu-li-1" @click="checkLogin5">个人闲置</a>
                 </li>
+                <li>
+                  <a class="my-dropdown-menu-li-1" @click="checkLogin6">个人消息</a>
+                </li>
               </ul>
             </el-col>
             <el-col :span="3" :offset="1" class="index-header-bar-span">
@@ -140,6 +143,14 @@
         checkLogin5(){
           if(window.sessionStorage.getItem("isLogin")){
             this.$router.push("/person#personOldId");
+          }else{
+            this.dialogValue = "请先登录账户";
+            this.centerDialogVisible = true;
+          }
+        },
+        checkLogin6(){
+          if(window.sessionStorage.getItem("isLogin")){
+            this.$router.push("/person#personMessage");
           }else{
             this.dialogValue = "请先登录账户";
             this.centerDialogVisible = true;

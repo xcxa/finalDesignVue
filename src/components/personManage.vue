@@ -4,10 +4,12 @@
       <index-header></index-header>
       <!--      个人信息-->
       <person-info></person-info>
+      <person-message></person-message>
       <!--      订单模块-->
       <person-orders></person-orders>
       <!--      我的闲置-->
       <person-old></person-old>
+
       <!--      首页尾-->
       <index-footer></index-footer>
     </div>
@@ -19,10 +21,11 @@
     import PersonOrders from './pages/person-orders'
     import PersonInfo from './pages/person-info'
     import PersonOld from './pages/person-old'
+    import PersonMessage from './pages/person-message'
     export default {
       name: "personManage",
       components:{
-        IndexHeader,PersonOrders,IndexFooter,PersonInfo,PersonOld
+        IndexHeader,PersonOrders,IndexFooter,PersonInfo,PersonOld,PersonMessage
       }
     }
 </script>
