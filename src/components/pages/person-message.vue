@@ -53,12 +53,12 @@
     </div>
 
     <el-dialog title="回复Ta" :visible.sync="showReplyDialog" width="30%" center>
-      <el-form :model="replyForm">
+      <el-form>
         <el-form-item label="回复内容">
-          <el-input v-model="replyForm.message" type="textarea" :rows="3" placeholder="请输入回复内容"></el-input>
+          <el-input v-model="replyMessageDto.message" type="textarea" :rows="3" placeholder="请输入回复内容"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitReply">提交</el-button>
+          <el-button type="primary" @click="submitReply()">提交回复</el-button>
         </el-form-item>
       </el-form>
 
@@ -81,24 +81,47 @@ export default {
       currentPage: 1,
       totalPages: 1,
       messages: [],
-      replyForm: {
-        message: ""
+      replyMessageDto: {
+        imgUrl:"",
+        message:"",
+        time:"",
+        userName:""
       }
     };
   },
   methods: {
-
-    submitReply() {
-    // 获取表单数据
-    const data = this.$refs.replyForm.model;
-    // TODO: 提交表单数据到后端
-    // 关闭弹窗
-    this.showReplyDialog = false;
-  },
     reply(row) {
       this.showReplyDialog = true;
+      console.log("row", row);
       // 可以将row等信息传递给弹窗组件
+      this.replyMessageDto = row;
     },
+
+    submitReply() {
+      // 获取表单数据
+      // TODO: 提交表单数据到后端
+      const params = {
+        senderId: window.sessionStorage.getItem("userId"),
+        imgUrl: this.replyMessageDto.imgUrl,
+        message: this.replyMessageDto.message,
+        recipientName: this.replyMessageDto.userName,
+        time: this.replyMessageDto.time
+        
+      };
+      console.log("params", params);
+
+      $.post('http://localhost:8083/message/reply', params)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+      // 关闭弹窗
+      this.showReplyDialog = false;
+
+    },
+
     getMessageList() {
       const params = {
         userId: this.userId,
