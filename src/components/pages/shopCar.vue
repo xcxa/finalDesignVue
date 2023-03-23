@@ -5,7 +5,7 @@
 
       <!--网页主体-->
       <div class="shopCarDiv">
-        <h2><i class="el-icon-goods" style="color: rgb(92,182,255)"></i>&nbsp;我的购物车：</h2>
+        <h2 class="myMessage"><i class="el-icon-goods" style="color: rgb(92,182,255)"></i>&nbsp;我的购物车：</h2>
         <el-table
           :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase())).slice((currentPage-1)*pageSize,currentPage*pageSize)"
           style="width: 100%">
@@ -58,12 +58,13 @@
               :page-sizes="[5, 10, 20, 40]"
               :page-size="pageSize"
               layout="total, sizes, prev, pager, next, jumper"
-              :total="tableData.length">
+              :total="tableData.length"
+              style="text-align:center">
             </el-pagination>
           </el-col>
           <el-col :span="5">
-            <!-- <el-button type="primary" @click="buyAll">全部购买</el-button> -->
-            <el-button type="primary" >全部购买</el-button>
+            <el-button type="primary" @click="buyAll">全部购买</el-button>
+            <!-- <el-button type="primary" class="buyALl">全部购买</el-button> -->
           </el-col>
         </el-row>
       </div>
@@ -137,7 +138,6 @@
             let jsonObj = {};
             jsonObj.goodsId = element.goodsId;
             $.get("http://localhost:8083/goods/getGoodsMainImg.do",jsonObj,function (data) {
-              //本地映射到9090端口，部署到远程服务器需要修改这里，服务端返回的imgUrl应该为相对路径，这里图片名字就行
               element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
               //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
               self.$set(self.tableData,index,element);
@@ -304,4 +304,32 @@
     margin: 0 auto;
     padding-top: 80px;
   }
+
+  .myMessage{
+  line-height: 60px;
+  width: 280px;
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+.buyALl:hover{
+  color: white;
+  line-height: 30px;
+  width: 180px;
+  background-color: #232f3e;
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 10px;
+  font-size: larger;
+}
+
+.buyALl{
+  color:#232f3e;
+  line-height: 30px;
+  width: 180px;
+  background-color: white;
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
 </style>

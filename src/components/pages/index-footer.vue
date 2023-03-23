@@ -1,5 +1,5 @@
 <template>
-  <div class="index-footer">
+  <div class="index-footer" >
     <el-row>
       <el-col :span="21" :offset="1">
 
@@ -25,9 +25,10 @@
        </el-row>
         <el-row style="margin-top: 5px;text-align: center;">
           <hr />
-          <p style="color: #999;font-size: 12px;">
+          <p style="color: #999;font-size: 12px; " >
             © 2023 湖北工业大学工程技术学院二手校园交易平台 
           </p>
+        
         </el-row>
       </el-col>
     </el-row>
@@ -78,7 +79,7 @@
     text-decoration: none;
     font-size: 14px;
     color: #999;
-    margin-top: 200px;
+    margin-top: 1000px;
     
   }
   .index-footer ul>li>a{
@@ -93,4 +94,8 @@
   display: flex;
   justify-content: center;
 }
+
+
+
+
 </style>

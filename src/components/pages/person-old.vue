@@ -1,6 +1,6 @@
 <template>
   <div class="personOldDiv" id="personOldId">
-    <h2>我的闲置：</h2>
+    <h2 class="myMessage">我的闲置：</h2>
     <!--数据列表-->
     <!--根据商品名搜索-->
     <el-table
@@ -59,7 +59,8 @@
         :page-sizes="[5, 10, 20, 40]"
         :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="tableData.length">
+        :total="tableData.length"
+        style="text-align:center">
     </el-pagination>
 
 
@@ -225,4 +226,12 @@
     margin: 0 auto;
     padding-top: 50px;
   }
+
+  .myMessage{
+  line-height: 60px;
+  width: 180px;
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
 </style>

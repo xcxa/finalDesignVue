@@ -1,12 +1,8 @@
 <template>
-  <!--    logo-->
   
   <el-row class="my-el-row-2">
-    <el-col :span="16" :offset="4" class="my-el-col-2" style="margin-top: 40px;">
-      <!-- <img src="../../assets/collegeLogo.png" alt="湖北工业大学工程技术学院二手交易平台"> -->
-    </el-col>
+
   </el-row>
-  <!--    logo结束-->
 </template>
 
 <script>
@@ -17,7 +13,7 @@
 
 <style scoped>
   .my-el-row-2{
-    height: 260px;
+    height: 40px;
     background-color: rgb(242,241,234);
     text-align: center;
   }

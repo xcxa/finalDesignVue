@@ -43,7 +43,8 @@
                 <el-dialog :visible.sync="dialogVisible">
                   <img width="100%" :src="dialogImageUrl" alt="">
                 </el-dialog>
-                <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器
+                <el-button style="margin-left: 10px;" class="myUpdate
+                " size="small" type="success" @click="submitUpload">点击上传
                 </el-button>
 <!--                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>-->
               </el-form-item>
@@ -81,7 +82,7 @@
     </el-row>
     <el-row>
       <el-col :span="5" :offset="9">
-        <el-button type="primary" @click="submitForm('submitGoodsForm')" style="width: 100%;">保存</el-button>
+        <el-button type="primary" @click="submitForm('submitGoodsForm')" class="myMessage">保存</el-button>
       </el-col>
     </el-row>
 
@@ -265,4 +266,56 @@
     color: #1f2f3d;
     font-size: 28px;
   }
+  .myMessage:hover{
+    color: white;
+  line-height: 50px;
+  width: 100%;
+  background-color: #232f3e;
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 10px;
+  font-size: 30px;
+
+
+
+
+}
+
+.myMessage{
+    
+  color: #232f3e;
+  width: 100%;
+  line-height: 50px;
+background-color: white;
+text-align: center;
+border: 2px solid gray;
+border-radius: 10px;
+
+font-size: 25px;
+
+}
+
+.myUpdate:hover{
+  color: white;
+  line-height: 50px;
+  width: 125px;
+  background-color: #232f3e;
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 10px;
+  font-size: 20px;
+}
+
+.myUpdate{
+  line-height: 50px;
+
+  color: #232f3e;
+  background-color: white;
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 10px;
+  font-size: 25px;
+}
+
+
 </style>

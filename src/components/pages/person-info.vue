@@ -1,11 +1,11 @@
 <template>
     <div class="personInfo" id="personInfoId">
       <h2>个人信息：</h2>
-      <el-card shadow="always">
+      <el-card shadow="always" >
         <el-form label-position="top" label-width="80px" :model="formLabelAlign" :rules="rules" ref="formLabelAlign">
           <el-row :gutter="100">
             <el-col :span="9" :offset="2">
-              <el-form-item label="用户名">
+              <el-form-item label="用户名"  >
                 <el-input v-model="formLabelAlign.username" disabled></el-input>
               </el-form-item>
             </el-col>
@@ -17,14 +17,14 @@
           </el-row>
           <el-row :gutter="100">
             <el-col :span="9" :offset="2">
-              <el-form-item label="用户昵称">
-                <el-input v-model="formLabelAlign.name" disabled></el-input>
+              <el-form-item label="用户昵称" >
+                <el-input v-model="formLabelAlign.name" disabled> </el-input>
               </el-form-item>
             </el-col>
             <el-col :span="9" :offset="1">
               <el-form-item label="性别">
                 <el-select v-model="formLabelAlign.sex" placeholder="还没有性别" style="width: 100%;">
-                  <el-option label="男" :value=1></el-option>
+                  <el-option label="男" :value=1 ></el-option>
                   <el-option label="女" :value=2></el-option>
                 </el-select>
               </el-form-item>
@@ -44,7 +44,7 @@
           </el-row>
           <el-row style="margin-top: 50px;">
             <el-col :span="5" :offset="9">
-              <el-button type="primary" @click="submitForm('formLabelAlign')" style="width: 100%;">保存</el-button>
+              <el-button type="primary" @click="submitForm('formLabelAlign')" class="mysave">保存</el-button>
             </el-col>
           </el-row>
         </el-form>
@@ -157,5 +157,13 @@
     width: 80%;
     margin: 0 auto;
     padding-top: 80px;
+  }
+
+  .mysave{
+    width: 100%;background-color: #232f3e;  font-weight: 900;
+  }
+  .mysave:hover{
+    background-color:white ;
+    color:#232f3e;
   }
 </style>

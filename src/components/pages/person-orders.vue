@@ -1,6 +1,6 @@
 <template>
   <div class="ordersDiv" id="ordersDivId">
-    <h2>我的订单：</h2>
+    <h2 class="myMessage">我的订单：</h2>
     <!--数据列表-->
     <!--根据商品名搜索-->
     <el-table
@@ -54,7 +54,8 @@
       :page-sizes="[5, 10, 20, 40]"
       :page-size="pageSize"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="tableData.length">
+      :total="tableData.length"
+      style="text-align:center">
     </el-pagination>
 
     <!--      反馈弹出框-->
@@ -191,7 +192,7 @@
         this.feedbackForm.goodsId = row.goodsId;
       },
       submitFeedback(){
-        // console.log("点击了提交反馈");
+        console.log("点击了提交反馈");
         let self = this;
         let jsonMsg = JSON.stringify(this.feedbackForm);
         $.post("http://localhost:8083/feedback/submitFeedback.do",jsonMsg,function (data) {
@@ -227,5 +228,13 @@
   width: 80%;
   margin: 0 auto;
   padding-top: 50px;
+}
+
+.myMessage{
+  line-height: 60px;
+  width: 180px;
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 10px;
 }
 </style>

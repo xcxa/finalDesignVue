@@ -1,6 +1,6 @@
 <template>
   <div class="personMessageDiv">
-    <h2>我的消息</h2>
+    <h2 class="myMessage">我的消息：</h2>
     <div class="message-list">
       <!-- <div v-for="(message, index) in currentPageMessages" :key="index" class="message-item">
           <div class="message-left">
@@ -48,14 +48,14 @@
 
     <div class="block">
       <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="currentPage"
-        :page-sizes="[5, 10, 20]" :page-size="100" layout="total, sizes, prev, pager, next, jumper" :total="total">
+        :page-sizes="[5, 10, 20]" :page-size="100" layout="total, sizes, prev, pager, next, jumper" :total="total"       style="text-align:center">
       </el-pagination>
     </div>
 
     <el-dialog title="回复Ta" :visible.sync="showReplyDialog" width="30%" center>
       <el-form>
         <el-form-item label="回复内容">
-          <el-input v-model="replyMessageDto.message" type="textarea" :rows="3" placeholder="请输入回复内容"></el-input>
+          <el-input v-model="replyMessageDto.rmessage" type="textarea" :rows="3" placeholder="请输入回复内容"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitReply()">提交回复</el-button>
@@ -82,10 +82,10 @@ export default {
       totalPages: 1,
       messages: [],
       replyMessageDto: {
-        imgUrl:"",
-        message:"",
-        time:"",
-        userName:""
+        imgUrl: "",
+        rmessage: "",
+        time: "",
+        userName: ""
       }
     };
   },
@@ -100,14 +100,14 @@ export default {
     submitReply() {
       // 获取表单数据
       // TODO: 提交表单数据到后端
-      const params = {
-        senderId: window.sessionStorage.getItem("userId"),
+      const json = {
+        userName: this.userId,
         imgUrl: this.replyMessageDto.imgUrl,
-        message: this.replyMessageDto.message,
-        recipientName: this.replyMessageDto.userName,
+        message: this.replyMessageDto.rmessage,
         time: this.replyMessageDto.time
-        
+
       };
+      const params = JSON.stringify(json);
       console.log("params", params);
 
       $.post('http://localhost:8083/message/reply', params)
@@ -235,6 +235,13 @@ h2 {
 img {
   max-width: 100%;
   height: auto;
+}
+.myMessage{
+  line-height: 60px;
+  width: 180px;
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 10px;
 }
 </style>
     

@@ -1,20 +1,21 @@
 <template>
   <div class="index-body">
-    <el-row :gutter="20" style="margin-top: 30px;">
-      <el-col :span="18">
+      <!-- <el-col :span="18">
         <el-carousel direction="horizontal" :autoplay="true">
           <el-carousel-item v-for="(v, k) in items" :key="k">
             <img :src="v" alt="请检查网络连接" class="carousel-image">
           </el-carousel-item>
         </el-carousel>
-      </el-col>
+      </el-col> -->
 
-      <el-carousel :interval="4000" type="card" height="200px">
-        <el-carousel-item v-for="(v, k) in items" :key="k">
-          <img :src="v" alt="请检查网络连接" class="carousel-image" style="width: 100%; height: 100%;">
-        </el-carousel-item>
-      </el-carousel>
-    </el-row>
+
+      <el-row :gutter="20" style="margin-top: 30px;">
+  <el-carousel :interval="4000" type="card"  height="450px" >
+    <el-carousel-item v-for="(v, k) in items" :key="k">
+      <img :src="v" alt="请检查网络连接" class="carousel-image" style="width: 100%; height: 100%;">
+    </el-carousel-item>
+  </el-carousel>
+</el-row>
 
 
 
@@ -25,10 +26,10 @@
       </el-col>
       <el-col :span="2">
         <el-button type="primary" icon="el-icon-search" @click="clickSearch"
-          v-loading.fullscreen.lock="fullscreenLoading">搜索</el-button>
+          v-loading.fullscreen.lock="fullscreenLoading" style="background-color: #232f3e;">搜索</el-button>
       </el-col>
     </el-row>
-    <p class="index-body-p-1">热门精品</p>
+    <p class="index-body-p-1">热门商品</p>
     <hr />
     <el-row style="margin-top: 50px;" v-for="(obj1, index1) in getRowNums(data1)" :key="getRandomString(20)">
       <el-col :span="4" v-for="(obj2, index2) in mySlice(data1, index1 * 4, (index1 + 1) * 4)" :key="getRandomString(21)"
@@ -37,7 +38,7 @@
           <img :src="obj2.picture" class="image" style="width: 100%" alt="请检查网络连接">
           <div style="padding: 10px;">
             <h4>{{ obj2.name }}</h4>
-            <div class="bottom clearfix">
+            <div class="bottom clearfix" >
               <el-button type="text" class="button" @click="clickGoodsInfoButton(obj2.goodsId)">查看详情</el-button>
             </div>
           </div>
@@ -500,5 +501,15 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.el-card {
+  width: 200px; /* 控制卡片宽度 */
+  height: 400px; /* 控制卡片高度 */
+}
+
+.el-card .image {
+  max-width: 100%; /* 图片自适应缩放 */
+  max-height: 100%;
 }
 </style>
