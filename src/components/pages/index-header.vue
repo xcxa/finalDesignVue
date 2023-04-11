@@ -2,20 +2,20 @@
   <div class="index-header">
     <!--    顶栏-->
     <nav class="navbar index-header-bar" style="text-align: center; font-size: 60px;">
-      <el-row >
-           
+      <el-row>
+
         <el-col :span="3" :offset="1" class="index-header-bar-span" style="margin-left: 130px;">
-              <a href="/">二手交易平台</a>
-            </el-col>
-        <el-col :span="10" :offset="5">
+          <a href="/">二手交易平台</a>
+        </el-col>
+        <el-col :span="10" :offset="4">
           <el-row>
- 
 
 
 
 
 
-            <el-col :span="3" :offset="1" class="index-header-bar-span" style="width: 100px;">
+
+            <el-col :span="3"  class="index-header-bar-span" style="width: 100px;">
               <a href="#" data-toggle="dropdown">登录/注册</a>
               <ul class="dropdown-menu my-dropdown-menu-1">
                 <li>
@@ -194,6 +194,8 @@ export default {
   text-align: center;
   line-height: 60px;
   position: relative;
+  margin-left: 0;
+
 }
 
 .index-header-bar a {
@@ -219,8 +221,8 @@ export default {
   line-height: 34px;
 }
 
-.my-dropdown-menu-li-1:hover{
-  background-color: pink;
+.my-dropdown-menu-li-1:hover {
+  background-color: rgb(196, 192, 255);
 }
 
 
@@ -233,10 +235,10 @@ export default {
   border-bottom: 2px solid rgb(181, 170, 154);
 }
 
+
 .my-el-menu-item-1 {
   margin-left: 5%;
   line-height: 50px;
   height: 50px;
 }
-
 </style>

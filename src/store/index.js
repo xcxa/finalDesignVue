@@ -8,7 +8,8 @@ export default new Vuex.Store({//store对象
   state: {
     isLogin: false,
     userId: "",
-    name: "未登录"
+    name: "未登录",
+    category: ""
   },
 
   //读状态（包装）
@@ -21,6 +22,10 @@ export default new Vuex.Store({//store对象
     },
     getName(state){
       return state.name;
+    }
+    ,
+    getName(state){
+      return state.category;
     }
   },
 
@@ -37,6 +42,9 @@ export default new Vuex.Store({//store对象
     },
     setName(state,name){
       state.name = name;
+    },
+    setName(state,category){
+      state.category = category;
     }
   },
 

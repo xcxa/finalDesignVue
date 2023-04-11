@@ -6,6 +6,7 @@ import Register from '../components/pages/register'
 import PersonManage from '../components/personManage'
 import OldSail from '../components/oldSail'
 import ShopCar from '../components/pages/shopCar'
+import CategoryGoods from '../components/categoryGoods'
 
 Vue.use(Router);
 
@@ -44,6 +45,13 @@ export default new Router({
       name: 'oldSail',
       components: {
         "web-body":OldSail
+      }
+    },
+    {
+      path: '/categoryGoods',
+      name: 'categoryGoods',
+      components: {
+        "web-body":CategoryGoods
       }
     },
     {

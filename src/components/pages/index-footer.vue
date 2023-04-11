@@ -87,7 +87,6 @@
     
   }
   .index-footer{
-    margin-top: 30px;
     text-align: center;
   }
   ul.nav.nav-tabs {

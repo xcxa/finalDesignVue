@@ -9,13 +9,32 @@
       </el-col> -->
 
 
-      <el-row :gutter="20" style="margin-top: 30px;">
-  <el-carousel :interval="4000" type="card"  height="450px" >
-    <el-carousel-item v-for="(v, k) in items" :key="k">
-      <img :src="v" alt="请检查网络连接" class="carousel-image" style="width: 100%; height: 100%;">
-    </el-carousel-item>
-  </el-carousel>
-</el-row>
+
+      <el-carousel height="300px">
+      <el-carousel-item v-for="item in items" :key="item">
+        <img :src="item" alt="请检查网络连接" class="carousel-image" style="width: 100%; height: 100%;">
+      </el-carousel-item>
+    </el-carousel>
+
+<div class="category-section">
+  <h1>你想要买什么？</h1>
+  <ul class="category-list">
+    <li v-for="category in categories" :key="category.id">
+      <router-link :to="{ path: category.route, query: { id: category.id } }">
+
+        
+        <img :src="category.image" :alt="category.name">
+        <br>
+        <h2>
+          {{ category.name }}
+        </h2>
+      </router-link>
+    </li>
+  </ul>
+</div>
+
+
+
 
 
 
@@ -29,23 +48,24 @@
           v-loading.fullscreen.lock="fullscreenLoading" style="background-color: #232f3e;">搜索</el-button>
       </el-col>
     </el-row>
-    <p class="index-body-p-1">热门商品</p>
-    <hr />
-    <el-row style="margin-top: 50px;" v-for="(obj1, index1) in getRowNums(data1)" :key="getRandomString(20)">
-      <el-col :span="4" v-for="(obj2, index2) in mySlice(data1, index1 * 4, (index1 + 1) * 4)" :key="getRandomString(21)"
-        :offset="index2 > 0 ? 2 : 1">
-        <el-card :body-style="{ padding: '0px', textAlign: 'center' }">
-          <img :src="obj2.picture" class="image" style="width: 100%" alt="请检查网络连接">
-          <div style="padding: 10px;">
-            <h4>{{ obj2.name }}</h4>
-            <div class="bottom clearfix" >
-              <el-button type="text" class="button" @click="clickGoodsInfoButton(obj2.goodsId)">查看详情</el-button>
-            </div>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
-
+            <p class="index-body-p-1">最新发布</p>
+            <hr />
+            <el-row style="margin-top: 50px;" v-for="(obj1, index1) in getRowNums(data1)" :key="getRandomString(20)">
+                <el-col :span="4" v-for="(obj2, index2) in mySlice(data1, index1 * 4, (index1 + 1) * 4)"
+                    :key="getRandomString(21)" :offset="index2 > 0 ? 2 : 1">
+                    <div @click="clickGoodsInfoButton(obj2.goodsId)">
+                        <el-card :body-style="{ padding: '0px', textAlign: 'center' }">
+                            <img :src="obj2.picture" class="image" width="100%" height="300" alt="请检查网络连接">
+                            <div style="padding: 10px;">
+                                <h4>{{ obj2.name }}</h4>
+                                <div class="bottom clearfix">
+                                    <el-button type="text" class="button">查看详情</el-button>
+                                </div>
+                            </div>
+                        </el-card>
+                    </div>
+                </el-col>
+            </el-row>
     <!--        分页组件-->
     <el-row style="text-align: center;margin-top: 80px;" v-show="paginationShow">
       <el-col :span="24">
@@ -73,22 +93,25 @@
           </el-col>
         </el-row> -->
 
-    <p class="index-body-p-1" style="margin-top: 60px;">9 新以上</p>
-    <hr />
-    <el-row style="margin-top: 50px;" v-for="(obj1, index1) in getRowNums(data3)" :key="getRandomString(20)">
-      <el-col :span="4" v-for="(obj2, index2) in mySlice(data3, index1 * 4, (index1 + 1) * 4)" :key="getRandomString(21)"
-        :offset="index2 > 0 ? 2 : 1">
-        <el-card :body-style="{ padding: '0px', textAlign: 'center' }">
-          <img :src="obj2.picture" class="image" style="width: 100%" alt="请检查网络连接">
-          <div style="padding: 10px;">
-            <h4>{{ obj2.name }}</h4>
-            <div class="bottom clearfix">
-              <el-button type="text" class="button" @click="clickGoodsInfoButton(obj2.goodsId)">查看详情</el-button>
-            </div>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
+
+<p class="index-body-p-1" style="margin-top: 60px;">9 新以上</p>
+<hr />
+<el-row style="margin-top: 50px;" v-for="(obj1, index1) in getRowNums(data3)" :key="getRandomString(20)">
+    <el-col :span="4" v-for="(obj2, index2) in mySlice(data3, index1 * 4, (index1 + 1) * 4)"
+        :key="getRandomString(21)" :offset="index2 > 0 ? 2 : 1">
+        <div @click="clickGoodsInfoButton(obj2.goodsId)">
+            <el-card :body-style="{ padding: '0px', textAlign: 'center' }">
+                <img :src="obj2.picture" class="image" width="100%" height="300" alt="请检查网络连接">
+                <div style="padding: 10px;">
+                    <h4>{{ obj2.name }}</h4>
+                    <div class="bottom clearfix">
+                        <el-button type="text" class="button">查看详情</el-button>
+                    </div>
+                </div>
+            </el-card>
+        </div>
+    </el-col>
+</el-row>
 
 
 
@@ -141,6 +164,12 @@
       </div>
     </el-dialog>
 
+
+
+ 
+
+
+
   </div>
 </template>
 
@@ -149,7 +178,51 @@ export default {
   name: "index-body",
   data() {
     return {
-
+      categories: [
+        {
+          id: 1,
+          name: '数码产品',
+          image: require('../../assets/phone.png'),
+          route: 'categoryGoods'
+        },
+        {
+          id: 2,
+          name: '二手图书',
+          image: require('../../assets/books.png'),
+          route: 'categoryGoods'
+        },
+        {
+          id: 3,
+          name: '生活百货',
+          image: require('../../assets/products.png'),
+          route: 'categoryGoods'
+        },
+        {
+          id: 4,
+          name: '运动和户外',
+          image: require('../../assets/sports.png'),
+          route: 'categoryGoods'
+        },
+        {
+          id: 5,
+          name: '美妆和护肤品',
+          image: require('../../assets/cosmetic.png'),
+          route: 'categoryGoods'
+        },
+        {
+          id: 6,
+          name: '交通工具',
+          image: require('../../assets/car.png'),
+          route: 'categoryGoods'
+        },
+        {
+          id: 7,
+          name: '更多',
+          image: require('../../assets/more.png'),
+          route: 'categoryGoods'
+        }
+      ]
+,
       messageForm: {
         userId: '',
         goodsId: '',
@@ -168,7 +241,7 @@ export default {
         ]
       },
       search: "",
-      data1: [],//热门精品
+      data1: [],//热门
       data2: [],//低价好物
       data3: [],//九新以上
       dataSearch: [],//用来保存搜索的全部结果
@@ -215,8 +288,6 @@ export default {
         jsonObj.goodsId = element.goodsId;
         //为每个表格元素加载图片数据，主图
         $.get("http://localhost:8083/goods/getGoodsMainImg.do", jsonObj, function (data) {
-          //本地映射到9090端口，部署到远程服务器需要修改这里，服务端返回的imgUrl应该为相对路径，这里图片名字就行
-          // element.picture = "http://localhost:9999/" + data.imgUrl;
           element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
           //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
           self.$set(self.data1, index, element);
@@ -290,6 +361,13 @@ export default {
     }
   },
   methods: {
+
+    setCategory(id) {
+    window.sessionStorage.setCategory('category', id);
+    let session = window.sessionStorage.getItem("category");
+    console.log("session",);
+    this.$router.push(category.route);
+  },
     //点击查看详情
     clickGoodsInfoButton(goodsId) {
       this.centerDialogVisible = true;
@@ -512,4 +590,52 @@ export default {
   max-width: 100%; /* 图片自适应缩放 */
   max-height: 100%;
 }
+
+
+/*logo*/
+.category-section {
+margin: 20px 0;
+}
+
+.category-section h2 {
+font-size: 1.5rem;
+font-weight: 500;
+margin-bottom: 10px;
+}
+
+.category-list {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+padding: 0;
+margin: 0;
+list-style: none;
+}
+.category-list li {
+  width: calc((100% - 140px) / 7);
+  margin-right: 20px;
+}
+
+.category-list li a {
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #444;
+  text-decoration: none;
+  padding: 0.8rem;
+  transition: background-color 0.2s ease;
+}
+.category-list li h2{
+  color: #202a59;
+}
+
+.category-list li a:hover {
+  background-color: #f5f5f5;
+  transform: translateY(-5px);
+}
+
+
+
 </style>

@@ -63,7 +63,7 @@
             </el-pagination>
           </el-col>
           <el-col :span="5">
-            <el-button type="primary" @click="buyAll">全部购买</el-button>
+            <el-button type="primary" @click="buyAll" class="buyALl">全部购买</el-button>
             <!-- <el-button type="primary" class="buyALl">全部购买</el-button> -->
           </el-col>
         </el-row>
@@ -94,7 +94,7 @@
           <img src="https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/xcx-wx.jpg" alt="请检查网络连接" width="240" height="240">
           <br/>
           <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="centerDialogVisible2 = false" style="margin-top: 30px;">取消支付</el-button>
+          <el-button type="primary" @click="centerDialogVisible2 = false" style="margin-top: 30px;" class="buyALl">取消支付</el-button>
           </span>
         </div>
       </el-dialog>
