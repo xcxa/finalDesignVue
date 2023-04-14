@@ -9,12 +9,26 @@
       </el-col> -->
 
 
+      <el-row style="position: fixed; top: 70px; left: 0; width: 100%; z-index: 999;">
 
-      <el-carousel height="300px">
-      <el-carousel-item v-for="item in items" :key="item">
-        <img :src="item" alt="请检查网络连接" class="carousel-image" style="width: 100%; height: 100%;">
-      </el-carousel-item>
-    </el-carousel>
+<el-col :span="15" :offset="4">
+  <el-input placeholder="输入商品名、商品ID" v-model="search" clearable>
+  </el-input>
+</el-col>
+<el-col :span="2">
+  <el-button type="primary" icon="el-icon-search" @click="clickSearch"
+    v-loading.fullscreen.lock="fullscreenLoading" style="background-color: #232f3e;">搜索</el-button>
+</el-col>
+
+</el-row>
+
+
+
+
+
+
+
+
 
 <div class="category-section">
   <h1>你想要买什么？</h1>
@@ -34,20 +48,27 @@
 </div>
 
 
+<el-row>
+  <el-col :span="12">
+    <el-carousel height="300px" style="background-color: #f0f0f0; box-shadow: 0px 0px 5px 1px #f0f0f0;">
+
+      <el-carousel-item v-for="item in items" :key="item">
+        <img :src="item" alt="请检查网络连接" class="carousel-image" style="width: 100%; height: 100%; object-fit: contain;">
+      </el-carousel-item>
+    </el-carousel>
+  </el-col>
+  <el-col :span="11" style="margin-left: 10px;">
+    <div class="shopping-cart" style="background-color: #f0f0f0; width: 100%; height: 300px; display: flex; align-items: center; justify-content: center;" @click="$router.push('oldSail')">
+      <h1>你想要买什么？</h1>
+    </div>
+  </el-col>
+</el-row>
 
 
 
 
-    <el-row style="position: relative;top:73px;">
-      <el-col :span="5" :offset="16">
-        <el-input placeholder="输入商品名、商品ID" v-model="search" clearable>
-        </el-input>
-      </el-col>
-      <el-col :span="2">
-        <el-button type="primary" icon="el-icon-search" @click="clickSearch"
-          v-loading.fullscreen.lock="fullscreenLoading" style="background-color: #232f3e;">搜索</el-button>
-      </el-col>
-    </el-row>
+
+
             <p class="index-body-p-1">最新发布</p>
             <hr />
             <el-row style="margin-top: 50px;" v-for="(obj1, index1) in getRowNums(data1)" :key="getRandomString(20)">
@@ -594,7 +615,7 @@ export default {
 
 /*logo*/
 .category-section {
-margin: 20px 0;
+margin: 120px 0 50px 0;
 }
 
 .category-section h2 {
@@ -635,7 +656,10 @@ list-style: none;
   background-color: #f5f5f5;
   transform: translateY(-5px);
 }
-
+.router2old{
+  height: 100%;
+  background-color: aqua;
+}
 
 
 </style>
