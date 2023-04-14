@@ -7,7 +7,7 @@
         <el-col :span="3" :offset="1" class="index-header-bar-span" style="margin-left: 130px;">
           <a href="/">二手交易平台</a>
         </el-col>
-        <el-col :span="10" :offset="4">
+        <el-col :span="13" :offset="5">
           <el-row>
 
 
@@ -26,13 +26,13 @@
                 </li>
               </ul>
             </el-col>
-            <el-col :span="3" :offset="1" class="index-header-bar-span">
+            <el-col :span="3" :offset="2" class="index-header-bar-span">
               <router-link to="shopCar"> 购物车</router-link>
             </el-col>
-            <el-col :span="3" :offset="1" class="index-header-bar-span">
+            <el-col :span="3" :offset="2" class="index-header-bar-span">
               <router-link to="oldSail" style="width: 18px;">闲置卖钱</router-link>
             </el-col>
-            <el-col :span="3" :offset="1" class="index-header-bar-span" style="width: 120px;">
+            <el-col :span="3" :offset="2" class="index-header-bar-span" style="width: 120px;">
               <a href="#" data-toggle="dropdown" style="width: 18px;">个人中心</a>
               <ul class="dropdown-menu my-dropdown-menu-1">
                 <li>

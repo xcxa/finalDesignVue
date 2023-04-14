@@ -9,11 +9,13 @@
       </el-col> -->
 
 
-      <el-row style="position: fixed; top: 70px; left: 0; width: 100%; z-index: 999;">
+      <el-row style="position: fixed; top: 70px; left: 0; width: 100%; z-index: 3;">
 
 <el-col :span="15" :offset="4">
+  <el-form @keyup.enter.native="clickSearch">
   <el-input placeholder="输入商品名、商品ID" v-model="search" clearable>
   </el-input>
+</el-form>
 </el-col>
 <el-col :span="2">
   <el-button type="primary" icon="el-icon-search" @click="clickSearch"
@@ -49,19 +51,23 @@
 
 
 <el-row>
-  <el-col :span="12">
+  <el-col :span="12" style="z-index: 0;">
     <el-carousel height="300px" style="background-color: #f0f0f0; box-shadow: 0px 0px 5px 1px #f0f0f0;">
 
       <el-carousel-item v-for="item in items" :key="item">
-        <img :src="item" alt="请检查网络连接" class="carousel-image" style="width: 100%; height: 100%; object-fit: contain;">
+        <img :src="item" alt="请检查网络连接" class="carousel-image" 
+        style="width: 100%; height: 100%; object-fit: contain;z-index: 0;">
       </el-carousel-item>
     </el-carousel>
   </el-col>
   <el-col :span="11" style="margin-left: 10px;">
-    <div class="shopping-cart" style="background-color: #f0f0f0; width: 100%; height: 300px; display: flex; align-items: center; justify-content: center;" @click="$router.push('oldSail')">
-      <h1>你想要买什么？</h1>
-    </div>
-  </el-col>
+  <div class="shopping-cart" style="background-color: #f0f0f0; width: 100%; height: 300px; display: flex; align-items: center; justify-content: center;" @click="$router.push('oldSail')">
+    <h1>想要卖闲置？</h1>
+    <br>
+    <h1>点击发布</h1>
+  </div>
+</el-col>
+
 </el-row>
 
 
@@ -115,7 +121,7 @@
         </el-row> -->
 
 
-<p class="index-body-p-1" style="margin-top: 60px;">9 新以上</p>
+<!-- <p class="index-body-p-1" style="margin-top: 60px;">9 新以上</p>
 <hr />
 <el-row style="margin-top: 50px;" v-for="(obj1, index1) in getRowNums(data3)" :key="getRandomString(20)">
     <el-col :span="4" v-for="(obj2, index2) in mySlice(data3, index1 * 4, (index1 + 1) * 4)"
@@ -132,7 +138,7 @@
             </el-card>
         </div>
     </el-col>
-</el-row>
+</el-row> -->
 
 
 
@@ -278,7 +284,7 @@ export default {
       goToShopCar: true,
       currentPage: 1, //初始页
       pageSize: 12, //每页的数据
-      paginationShow: false,//默认不显示分页
+      paginationShow: true,//默认不显示分页
       searchFlag: false,//用来避免频繁向服务器发送数据
       fullscreenLoading: false,//模拟加载
     };
