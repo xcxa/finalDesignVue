@@ -94,7 +94,7 @@
         // }, "json");
         $.ajax({
           type:"POST",
-          url:"http://localhost:8083/user/register.do",
+          url:"http://47.120.6.85:8083/user/register.do",
           data:jsonMsg,
           dataType:"json",
           contentType:"application/json",

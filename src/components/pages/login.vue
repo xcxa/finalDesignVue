@@ -87,7 +87,7 @@
           jsonObj.password = this.inputPassword;
           let jsonMsg = JSON.stringify(jsonObj);
           let self = this;
-          // $.post("http://localhost:8083/user/login.do", jsonMsg, function (data) {
+          // $.post("http://47.120.6.85:8083/user/login.do", jsonMsg, function (data) {
           //   // alert(data.userId);
           //   if (data != null && data.userId != null && data.userId !== "") {
           //     //登录成功
@@ -106,7 +106,7 @@
           // }, "json");
           $.ajax({
             type:"POST",
-            url:"http://localhost:8083/user/login.do",
+            url:"http://47.120.6.85:8083/user/login.do",
             dataType:"json",
             contentType:"application/json",
             data:JSON.stringify(jsonObj),

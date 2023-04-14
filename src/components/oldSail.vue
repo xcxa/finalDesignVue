@@ -210,10 +210,10 @@ export default {
   mounted() {
     //先从服务端获取一个随机不重复的商品ID作为准备新上传的闲置商品ID
     let self = this;
-    $.get("http://localhost:8083/goods/getRandomGoodsId.do", function (data) {
+    $.get("http://47.120.6.85:8083/goods/getRandomGoodsId.do", function (data) {
       self.submitGoodsForm.goodsId = data.goodsId;
       //设置上传图片路径，需要一个商品ID
-      self.action = "http://localhost:8083/upload/uploadFile.do?goodsId=" + data.goodsId;
+      self.action = "http://47.120.6.85:8083/upload/uploadFile.do?goodsId=" + data.goodsId;
     }, "json");
   },
   methods: {
@@ -226,7 +226,7 @@ export default {
             this.submitGoodsForm.userId = window.sessionStorage.getItem("userId");
             let jsonMsg = JSON.stringify(this.submitGoodsForm);
 
-            $.post("http://localhost:8083/goods/createGoods.do", jsonMsg, function (data) {
+            $.post("http://47.120.6.85:8083/goods/createGoods.do", jsonMsg, function (data) {
               if (data.code === 1) {
                 self.dialogValue = "保存成功";
                 const params = {
@@ -235,7 +235,7 @@ export default {
                 };
                 jsonMsg = JSON.stringify(params);
                 console.log("params:", jsonMsg);
-                $.post("http://localhost:8083/category/create", jsonMsg, function (data) {
+                $.post("http://47.120.6.85:8083/category/create", jsonMsg, function (data) {
                 });
               } else {
                 self.dialogValue = "保存失败，错误码：" + data.code;

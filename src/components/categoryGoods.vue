@@ -26,7 +26,7 @@
         <img :src="item" alt="请检查网络连接" class="carousel-image" style="width: 50%; height: 100%;">
       </el-carousel-item>
     </el-carousel>
-    
+
 
     <el-carousel height="300px">
   <el-carousel-item v-for="(item, index) in items" :key="index">
@@ -158,7 +158,7 @@
         <index-footer></index-footer>
     </div>
 </template>
-  
+
 <script>
 import IndexHeader from './pages/index-header'
 import IndexFooter from './pages/index-footer'
@@ -282,13 +282,13 @@ export default {
             self.fullscreenLoading = false;
         }, 300);
 
-        $.get("http://localhost:8083/category/newCategoryGoods/" + self.categoryId, function (data) {
+        $.get("http://47.120.6.85:8083/category/newCategoryGoods/" + self.categoryId, function (data) {
             self.data1 = data;
             $(self.data1).each(function (index, element) {
                 let jsonObj = {};
                 jsonObj.goodsId = element.goodsId;
                 //为每个表格元素加载图片数据，主图
-                $.get("http://localhost:8083/goods/getGoodsMainImg.do", jsonObj, function (data) {
+                $.get("http://47.120.6.85:8083/goods/getGoodsMainImg.do", jsonObj, function (data) {
                     element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
                     //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
                     self.$set(self.data1, index, element);
@@ -297,14 +297,14 @@ export default {
         }, "json");
 
         //加载 9 新以上数据，服务端返回最多 12条 数据
-        $.get("http://localhost:8083/category/bestCategoryGoods/" + self.categoryId, function (data) {
+        $.get("http://47.120.6.85:8083/category/bestCategoryGoods/" + self.categoryId, function (data) {
             self.data3 = data;
             $(self.data3).each(function (index, element) {
                 let jsonObj = {};
                 jsonObj.goodsId = element.goodsId;
                 //为每个表格元素加载图片数据，主图
                 element.picture = "";
-                $.get("http://localhost:8083/goods/getGoodsMainImg.do", jsonObj, function (data) {
+                $.get("http://47.120.6.85:8083/goods/getGoodsMainImg.do", jsonObj, function (data) {
                     element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
                     //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
                     self.$set(self.data3, index, element);
@@ -319,7 +319,7 @@ export default {
         //当搜索框无内容且已经搜索过，那么就是清空了搜索框，这时重新加载初始数据
         if (this.search === "" && this.searchFlag) {
             //加载热门精品数据，服务端返回最多 12条 数据
-            $.get("http://localhost:8083/category/bestCategoryGoods/" + self.categoryId, function (data) {
+            $.get("http://47.120.6.85:8083/category/bestCategoryGoods/" + self.categoryId, function (data) {
                 //延迟 0.3 S 绑定数据
                 self.fullscreenLoading = true;
                 setTimeout(() => {
@@ -332,7 +332,7 @@ export default {
                     let jsonObj = {};
                     jsonObj.goodsId = element.goodsId;
                     //为每个表格元素加载图片数据，主图
-                    $.get("http://localhost:8083/goods/getGoodsMainImg.do", jsonObj, function (data) {
+                    $.get("http://47.120.6.85:8083/goods/getGoodsMainImg.do", jsonObj, function (data) {
                         //本地映射到9090端口，部署到远程服务器需要修改这里，服务端返回的imgUrl应该为相对路径，这里图片名字就行
                         element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
                         //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
@@ -348,7 +348,7 @@ export default {
         IndexHeader, IndexFooter
     },
     methods: {
-       
+
 
         setCategory(id) {
             window.sessionStorage.setCategory('category', id);
@@ -364,11 +364,11 @@ export default {
             let jsonObj = {};
             jsonObj.goodsId = goodsId;
             let jsonMsg = JSON.stringify(jsonObj);
-            $.get("http://localhost:8083/goods/getGoodsById.do", jsonObj, function (data) {
+            $.get("http://47.120.6.85:8083/goods/getGoodsById.do", jsonObj, function (data) {
                 self.goodsInfoName = data.name;
                 self.goodsInfoPrice = data.price;
                 self.goodsInfoDscrip = data.dscrip;
-                $.get("http://localhost:8083/goods/getGoodsImgMap.do", jsonObj, function (data) {
+                $.get("http://47.120.6.85:8083/goods/getGoodsImgMap.do", jsonObj, function (data) {
                     self.goodsInfoImg = data;
                 }, "json");
             }, "json");
@@ -391,7 +391,7 @@ export default {
             jsonObj.goodsId = this.goodsInfoId;
             let jsonMsg = JSON.stringify(jsonObj);
             let self = this;
-            $.post("http://localhost:8083/shopCar/addOneToShopCar.do", jsonMsg, function (data) {
+            $.post("http://47.120.6.85:8083/shopCar/addOneToShopCar.do", jsonMsg, function (data) {
                 if (data.code === 1) {
                     self.dialogValue = "加入购物车成功";
                     self.goToShopCar = false;
@@ -424,7 +424,7 @@ export default {
             const jsonData = JSON.stringify(json);
             console.log('jsonData:', jsonData); // 打印jsonData
             // 调用接口提交数据
-            $.post('http://localhost:8083/message/send', jsonData)
+            $.post('http://47.120.6.85:8083/message/send', jsonData)
                 .then(res => {
                     // 提交成功后的操作
                     this.$message.success('留言成功');
@@ -466,14 +466,14 @@ export default {
 
                 let jsonObj = {};
                 jsonObj.text = this.search;
-                $.get("http://localhost:8083/goods/getSearchGoods.do", jsonObj, function (data) {
+                $.get("http://47.120.6.85:8083/goods/getSearchGoods.do", jsonObj, function (data) {
                     //保存搜索内容
                     self.dataSearch = data;
                     $(self.dataSearch).each(function (index, element) {
                         let jsonObj = {};
                         jsonObj.goodsId = element.goodsId;
                         //为每个表格元素加载图片数据，主图
-                        $.get("http://localhost:8083/goods/getGoodsMainImg.do", jsonObj, function (data) {
+                        $.get("http://47.120.6.85:8083/goods/getGoodsMainImg.do", jsonObj, function (data) {
                             //本地映射到9090端口，部署到远程服务器需要修改这里，服务端返回的imgUrl应该为相对路径，这里图片名字就行
                             element.picture = "https://finaldesign-xcx.oss-cn-hangzhou.aliyuncs.com/" + data.imgUrl;
                             //因为数组单值更新不会引起 Vue 重新渲染，手动通知 Vue 渲染
@@ -539,7 +539,7 @@ export default {
     }
 }
 </script>
-  
+
 <style scoped>
 .categoryGoodsDiv-1 {
     width: 80%;
@@ -648,7 +648,7 @@ export default {
   .el-carousel__item:nth-child(2n) {
      background-color: #99a9bf;
   }
-  
+
   .el-carousel__item:nth-child(2n+1) {
      background-color: #d3dce6;
   }

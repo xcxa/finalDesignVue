@@ -107,7 +107,7 @@
         jsonObj.userId = window.sessionStorage.getItem("userId");
         let jsonMsg = JSON.stringify(jsonObj);
         let self = this;
-        $.get("http://localhost:8083/user/getInfo.do",jsonObj,function (data) {
+        $.get("http://47.120.6.85:8083/user/getInfo.do",jsonObj,function (data) {
           self.formLabelAlign.username = data.username;
           if(data.sex === 1)
             self.formLabelAlign.sex = "男";
@@ -131,7 +131,7 @@
               this.formLabelAlign.userId = window.sessionStorage.getItem("userId");
               let jsonMsg = JSON.stringify(this.formLabelAlign);
               let self = this;
-              $.post("http://localhost:8083/user/setInfo.do",jsonMsg,function (data) {
+              $.post("http://47.120.6.85:8083/user/setInfo.do",jsonMsg,function (data) {
                 if(data.code === 1){
                   self.dialogValue = "保存成功";
                 }else{

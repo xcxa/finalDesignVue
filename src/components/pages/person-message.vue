@@ -110,7 +110,7 @@ export default {
       const params = JSON.stringify(json);
       console.log("params", params);
 
-      $.post('http://localhost:8083/message/reply', params)
+      $.post('http://47.120.6.85:8083/message/reply', params)
         .then(function (response) {
           console.log(response);
         })
@@ -131,7 +131,7 @@ export default {
 
       var self = this;
 
-      $.get('http://localhost:8083/message/getPage', params)
+      $.get('http://47.120.6.85:8083/message/getPage', params)
         .then(function (response) {
           self.messages = response.data;
           self.total = response.total;
@@ -171,7 +171,7 @@ export default {
   },
 };
 </script>
-    
+
 <style scoped>
 .personMessageDiv {
   width: 80%;
@@ -244,4 +244,3 @@ img {
   border-radius: 10px;
 }
 </style>
-    
